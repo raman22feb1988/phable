@@ -68,6 +68,19 @@ public class Second extends Fragment {
             }
         });
 
+        Button b3 = view2.findViewById(R.id.button3);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                First first = new First(name, mail, phone);
+
+                FragmentManager fragmentManager5 = getFragmentManager();
+                FragmentTransaction fragmentTransaction5 = fragmentManager5.beginTransaction();
+                fragmentTransaction5.replace(R.id.framelayout1, first);
+                fragmentTransaction5.commit();
+            }
+        });
+
         return view2;
     }
 }
