@@ -93,7 +93,7 @@ public class Third extends RecyclerView.Adapter<Third.ViewHolder> {
                                 r1.setAdapter(third);
                             }
                         })
-                        .setNegativeButton("Update", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 Second second = new Second(name, mail, phone, position);
 
