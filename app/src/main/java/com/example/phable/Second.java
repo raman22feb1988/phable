@@ -16,12 +16,14 @@ import java.util.ArrayList;
 public class Second extends Fragment {
     ArrayList<String> name;
     ArrayList<String> mail;
+    ArrayList<String> phone;
     int index;
 
-    public Second(ArrayList<String> name, ArrayList<String> mail, int index)
+    public Second(ArrayList<String> name, ArrayList<String> mail, ArrayList<String> phone, int index)
     {
         this.name = name;
         this.mail = mail;
+        this.phone = phone;
         this.index = index;
     }
 
@@ -31,10 +33,12 @@ public class Second extends Fragment {
 
         final EditText e1 = view2.findViewById(R.id.edittext1);
         final EditText e2 = view2.findViewById(R.id.edittext2);
+        final EditText e3 = view2.findViewById(R.id.edittext3);
 
         if(index != -1) {
             e1.setText(name.get(index));
             e2.setText(mail.get(index));
+            e3.setText(phone.get(index));
         }
 
         Button b2 = view2.findViewById(R.id.button2);
@@ -43,16 +47,19 @@ public class Second extends Fragment {
             public void onClick(View view) {
                 String user = (e1.getText()).toString();
                 String email = (e2.getText()).toString();
+                String contact = (e3.getText()).toString();
 
                 if(index == -1) {
                     name.add(user);
                     mail.add(email);
+                    phone.add(contact);
                 } else {
                     name.set(index, user);
                     mail.set(index, email);
+                    phone.set(index, contact);
                 }
 
-                First first = new First(name, mail);
+                First first = new First(name, mail, phone);
 
                 FragmentManager fragmentManager3 = getFragmentManager();
                 FragmentTransaction fragmentTransaction3 = fragmentManager3.beginTransaction();

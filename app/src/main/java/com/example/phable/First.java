@@ -17,11 +17,13 @@ import java.util.ArrayList;
 public class First extends Fragment {
     ArrayList<String> name;
     ArrayList<String> mail;
+    ArrayList<String> phone;
 
-    public First(ArrayList<String> name, ArrayList<String> mail)
+    public First(ArrayList<String> name, ArrayList<String> mail, ArrayList<String> phone)
     {
         this.name = name;
         this.mail = mail;
+        this.phone = phone;
     }
 
     @Override
@@ -33,14 +35,14 @@ public class First extends Fragment {
         r1.setHasFixedSize(true);
         r1.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Third third = new Third(getContext(), R.layout.third, name, mail, r1);
+        Third third = new Third(getContext(), R.layout.third, name, mail, phone, r1);
         r1.setAdapter(third);
 
         Button b1 = view1.findViewById(R.id.button1);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Second second = new Second(name, mail, -1);
+                Second second = new Second(name, mail, phone, -1);
 
                 FragmentManager fragmentManager2 = getFragmentManager();
                 FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();

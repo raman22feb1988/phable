@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class Home extends AppCompatActivity {
     ArrayList<String> name;
     ArrayList<String> mail;
+    ArrayList<String> phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,13 @@ public class Home extends AppCompatActivity {
 
         String user = pref.getString("name", null);
         String email = pref.getString("mail", null);
+        String contact = pref.getString("phone", null);
 
         name = (user == null || user.length() <= 2) ? new ArrayList<String>() : new ArrayList<String>(Arrays.asList((user.substring(1, user.length() - 1)).split(", ")));
         mail = (email == null || email.length() <= 2) ? new ArrayList<String>() : new ArrayList<String>(Arrays.asList((email.substring(1, email.length() - 1)).split(", ")));
+        phone = (contact == null || contact.length() <= 2) ? new ArrayList<String>() : new ArrayList<String>(Arrays.asList((contact.substring(1, contact.length() - 1)).split(", ")));
 
-        First first = new First(name, mail);
+        First first = new First(name, mail, phone);
 
         FragmentManager fragmentManager1 = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
@@ -61,6 +64,7 @@ public class Home extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("name", name.toString());
         editor.putString("mail", mail.toString());
+        editor.putString("phone", phone.toString());
         editor.apply();
 
         super.onBackPressed();

@@ -21,19 +21,22 @@ public class Third extends RecyclerView.Adapter<Third.ViewHolder> {
 
     ArrayList<String> name;
     ArrayList<String> mail;
+    ArrayList<String> phone;
 
     View listItem;
     TextView t1;
     TextView t2;
+    TextView t6;
     RecyclerView r1;
 
-    public Third(Context context, int resource, ArrayList<String> name, ArrayList<String> mail, RecyclerView r1) {
+    public Third(Context context, int resource, ArrayList<String> name, ArrayList<String> mail, ArrayList<String> phone, RecyclerView r1) {
         // TODO Auto-generated constructor stub
         con = context;
         _resource = resource;
 
         this.name = name;
         this.mail = mail;
+        this.phone = phone;
         this.r1 = r1;
 
     }
@@ -44,6 +47,7 @@ public class Third extends RecyclerView.Adapter<Third.ViewHolder> {
 
             t1 = itemView.findViewById(R.id.textview1);
             t2 = itemView.findViewById(R.id.textview2);
+            t6 = itemView.findViewById(R.id.textview6);
         }
     }
 
@@ -59,6 +63,7 @@ public class Third extends RecyclerView.Adapter<Third.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         t1.setText(name.get(position));
         t2.setText(mail.get(position));
+        t6.setText(phone.get(position));
 
         listItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +74,11 @@ public class Third extends RecyclerView.Adapter<Third.ViewHolder> {
 
                 TextView t3 = yourCustomView.findViewById(R.id.textview3);
                 TextView t4 = yourCustomView.findViewById(R.id.textview4);
+                TextView t5 = yourCustomView.findViewById(R.id.textview5);
 
                 t3.setText(name.get(position));
                 t4.setText(mail.get(position));
+                t5.setText(phone.get(position));
 
                 AlertDialog dialog = new AlertDialog.Builder(con)
                         .setTitle("User Details")
@@ -80,14 +87,15 @@ public class Third extends RecyclerView.Adapter<Third.ViewHolder> {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 name.remove(position);
                                 mail.remove(position);
+                                phone.remove(position);
 
-                                Third third = new Third(con, R.layout.third, name, mail, r1);
+                                Third third = new Third(con, R.layout.third, name, mail, phone, r1);
                                 r1.setAdapter(third);
                             }
                         })
                         .setNegativeButton("Update", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                Second second = new Second(name, mail, position);
+                                Second second = new Second(name, mail, phone, position);
 
                                 FragmentManager fragmentManager4 = ((AppCompatActivity) con).getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction4 = fragmentManager4.beginTransaction();
